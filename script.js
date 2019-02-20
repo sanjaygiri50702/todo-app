@@ -8,7 +8,12 @@ class Todo {
 class Todotask {
     constructor(){
         this.taskList = [];
+
+        if(localStorage.getItem('todo')){
+            this.taskList = JSON.parse(localStorage.getItem('todo'))
+        }
     }
+
     add(task){
         var data = new Todo(task);
         this.taskList.push(data);
@@ -20,13 +25,8 @@ class Todotask {
         // console.log('position',position);
         
         this.taskList.splice(position,1);
-        var jsonData = localStorage.getItem('todo');
-        var data = JSON.parse(jsonData);
-
-
-
-        // console.log('tasklist',this.taskList)
-
+        localStorage.setItem('todo',JSON.stringify(this.taskList));
+ 
         return this;
     }
     display(){
@@ -61,6 +61,10 @@ document.querySelector('button').addEventListener('click',function(){
 var deleteItem = (a)=>{
     todo.remove(a);
     document.getElementById('addtodo').innerHTML = '';
+    todo.display();
+}
+
+window.onload = ()=>{
     todo.display();
 }
 // var jsonData = localStorage.getItem('todo');
