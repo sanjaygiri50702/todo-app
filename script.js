@@ -32,16 +32,19 @@ class Todotask {
     display(){
         for(var i = 0 ;i<this.taskList.length;i++){
         console.log('tasklist',this.taskList)
-            var div = document.createElement('div'); 
-            var element = document.createElement('p');
+            // var div = document.createElement('div'); 
+            var element = document.createElement('li');
             var button = document.createElement('button');
-            button.setAttribute('onclick', `deleteItem(${i})`)
+            button.setAttribute('onclick', `deleteItem(${i})`);
+            button.setAttribute('class','btn btn-outline-danger');
+            element.setAttribute('class','list-group-item')
             button.innerText = 'Remove';
             console.log('task',this.taskList[i].task);
             element.innerText = this.taskList[i].task;
-            div.appendChild(element);
-            div.appendChild(button);
-            document.getElementById('addtodo').appendChild(div);
+            // div.appendChild(element);
+            // element.appendChild(button);
+            document.getElementById('addtodo').appendChild(element);
+            document.getElementById('addtodo').appendChild(button);
             // document.getElementsByTagName('input')[0].value = ''; 
         }
         return this
@@ -50,13 +53,7 @@ class Todotask {
 }
 var todo = new Todotask();
 
-document.querySelector('button').addEventListener('click',function(){
-    var task = prompt('add todo');
-    // console.log('c',task);
-    todo.add(task);
-    document.getElementById('addtodo').innerHTML = '';
-    todo.display();
-})
+
 
 var deleteItem = (a)=>{
     todo.remove(a);
@@ -67,13 +64,13 @@ var deleteItem = (a)=>{
 window.onload = ()=>{
     todo.display();
 }
-// var jsonData = localStorage.getItem('todo');
-// localStorage.removeItem("todo");
-// console.log('daa',jsonData);
-//  var data = JSON.parse(jsonData);
-// console.log('daa',data);
+document.querySelector('form').onsubmit = (event)=>{
+    console.log('event',event)
+    event.preventDefault();
+    var task = document.getElementsByTagName('input')[0].value;
+    document.getElementsByTagName('input')[0].value = '';
+    todo.add(task);
+    document.getElementById('addtodo').innerHTML = '';
+    todo.display();
 
-// for(var i = 0;data.length;i++){
-//     todo.add(data[0].task);
-// }
-// todo.display();
+}

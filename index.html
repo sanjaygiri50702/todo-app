@@ -4,13 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>slider</title>
+    <title>todo app</title>
+    <link rel="stylesheet" href="asset/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
 </head>
 <body>
-    <div>
-        <button>add task</button>
+    <div class="container-fluid col-sm-6">
+        <div>
+            <form class="form-group" action="">
+                <input class="form-control form-control-lg" type="text" placeholder="Task">
+                <input class="btn btn-outline-dark btn-lg" type="submit" value="Add">
+                <!-- <button class="btn btn-outline-dark btn-lg">Add </button> -->
+
+            </form>
+        </div>
+        <ul class="list-group" id="addtodo"></ul>
+        <script src="script.js"></script>
     </div>
-    <div id="addtodo"></div>
-    <script src="script.js"></script>
 </body>
 </html>
